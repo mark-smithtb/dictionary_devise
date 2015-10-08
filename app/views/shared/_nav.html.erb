@@ -25,6 +25,7 @@
           <%= form_tag(new_user_session_path, method: :post) %>
           <input name="email" id="email" type="text" placeholder="Email">
           <input name="password" id="password" type="password" placeholder="Password">
+          <div class="login">
           <button class="btn btn-block btn-primary" type="submit">Login</button>
           <%= link_to user_omniauth_authorize_path(:github), class: "btn btn-block btn-social btn-github" do %>
           <i class="fa fa-lg fa-github"></i> Sign in with Github
@@ -32,6 +33,7 @@
           <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-block btn-social btn-facebook" do %>
           <i class="fa fa-lg fa-facebook"></i> Sign in with Facebook
           <% end %>
+        </div>
         </form>
       </div>
 
