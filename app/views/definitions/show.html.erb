@@ -1,0 +1,25 @@
+<div class='container'>
+  <p id="notice"><%= notice %></p>
+
+  <div class="col-md-6">
+    <div class="row">
+      <span>
+        <span id='word'><%= @definition.word %></span>
+        <%= link_to 'Edit', edit_definition_path(@definition) %>
+      </span>
+    </div>
+    <p class="row"><%= @definition.word_type %></p>
+    <p class="row">
+      <%= @definition.meaning %>
+    </p>
+    <p class="row">
+      Examples
+    </p>
+    <% @definition.examples.each do |example| %>
+    <p>
+      <%= example.example %>
+      <%= link_to '', example, method: :delete, data: { confirm: 'Are you sure?'}, class: "glyphicon glyphicon-fire fire" %>
+    </p>
+    <%end%>
+    <%= link_to 'Back', definitions_path %>
+  </div>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class='container'>
+  <div class="col-md-6">
+    <h1 class="row">Definitions</h1>
+    <% @definitions.each do |definition| %>
+    <div class="row">
+      <span>
+        <a id='word' href="<%= definition_path(definition) %>" ><%= definition.word %></a>
+        <% if user_signed_in? %>
+        <%= link_to 'edit word', edit_definition_path(definition) %>
+        <%= link_to 'delete word', definition, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'add example', new_example_path(@example, definition: definition.id) %>
+        <%end%>
+      </span>
+    </div>
+    <p class="row"><%= definition.word_type %></p>
+    <p class="row">
+      <%= definition.meaning %>
+    </p>
+    <p class="row">
+      Examples
+    </p>
+    <% definition.examples.each do |example| %>
+    <p>
+      <%= example.example %>
+        <% if user_signed_in? %>
+      <%= link_to '', example, method: :delete, data: { confirm: 'Are you sure?'}, class: "glyphicon glyphicon-fire fire" %>
+      <%end%>
+    </p>
+    <%end%>
+    <% end %>
+    <%= link_to_previous_page @definitions, 'Previous', params: {search: @search} %>
+    <%= link_to_next_page @definitions, 'Next Page', params: {search: @search} %>
+  </div>
+</div>

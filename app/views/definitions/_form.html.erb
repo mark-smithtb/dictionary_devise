@@ -1,0 +1,35 @@
+<%= form_for(@definition, class: "form-horizontal") do |f| %>
+<% if @definition.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@definition.errors.count, "error") %> prohibited this definition from being saved:</h2>
+
+  <ul>
+    <% @definition.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= f.label :word %><br>
+  <%= f.text_field :word %>
+</div>
+<div class="field">
+  <%= f.label :meaning %><br>
+  <%= f.text_area :meaning %>
+</div>
+<%= f.fields_for :examples do |examples_form| %>
+<div class="field">
+  <%= examples_form.label :example %><br>
+  <%= examples_form.text_area :example %>
+  <% end %>
+</div>
+<div class="field">
+  <%= f.label :word_type %><br>
+  <%= f.select(:word_type, ['verb', 'noun', 'adjective','adverb']) %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

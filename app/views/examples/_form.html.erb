@@ -1,0 +1,23 @@
+<%= form_for(@example, class: "form-horizontal") do |f| %>
+  <% if @example.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@example.errors.count, "error") %> prohibited this example from being saved:</h2>
+
+      <ul>
+      <% @example.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.hidden_field :definition_id, value: @definition_id %>
+    <%= f.label :example %><br>
+    <%= f.text_area :example %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

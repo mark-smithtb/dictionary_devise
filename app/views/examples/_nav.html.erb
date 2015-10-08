@@ -1,0 +1,37 @@
+<div class="navbar navbar-fixed-top navbar_dictionary">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="<%= definitions_path %>"><%= image_tag "icon_rails.png" %></a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <% if current_user != nil %>
+            <li id='new_word'><%= link_to 'Add a word', new_definition_path %></li>
+          </li>
+          <% end %>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+          <form method="get" action="<%= search_definitions_path %>" class="navbar-form pull-right" role="search">
+            <input type="text" class="form-control" placeholder="Search" name="search">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </li>
+        <% if current_user == nil %>
+    <li><%= link_to 'Create an Account', new_user_registration_path %></li>
+    <li class="dropdown" id="menuLogin">
+      <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+      <div class="dropdown-menu" style="padding:17px;">
+        <%= form_tag(new_user_session_path, method: :post) %>
+        <input name="email" id="email" type="text" placeholder="Email">
+        <input name="password" id="password" type="password" placeholder="Password"><br>
+        <button class="btn" type="submit">Login</button>
+      </form>
+    </div>
+    <%else%>
+    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Really logout?' } %></li>
+    <%end%>
+        </ul>
+      </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+  </div><!-- /.navbar-inner -->
+</div><!-- /.navbar -->
